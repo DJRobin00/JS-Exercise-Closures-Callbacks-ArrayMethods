@@ -141,13 +141,7 @@ function processProduct(num1, num2, callback) {
 */
 function processContains(item, list, callback) {
   
-  return callback(function (item){ 
-
-    if (list.item) {
-    return true;
-    }
-
-  });
+  return list.includes(item)
 
 }
 
@@ -194,9 +188,9 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
 */
 function getFullNames(runners) {
 
-    return runners.forEach((runners) => {
-      return `${runners.last_name}, ${runners.first_name}`;
-    })
+    return runners.forEach(names => 
+      `${names.last_name}, ${names.first_name}`
+    )
 }
 
 /**
@@ -212,7 +206,7 @@ function getFullNames(runners) {
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
 function firstNamesAllCaps(runners) {
-  return runners.map(first_name => {first_name.toUpperCase});
+  return runners.map(first_name => first_name.toUpperCase);
 }
 
 /**
@@ -251,12 +245,8 @@ function getRunnersByTShirtSize(runners, tShirtSize) {
 function tallyUpDonations(runners) {
 
   return runners.reduce((accumulator, value) => {
-    accumulator + value;
+    return accumulator += value.donation;
   }, 0);
-  
-  // return runners.reduce((total, quantDon) => {
-  //   return total + quantDon;
-  // }, 0)
   
 }
 
@@ -283,14 +273,16 @@ function counterMaker() {
     ++count
   }
   // BROKEN CODE ENDS
-  
-  let maxValue = 2;
+  console.log(count);
 
-  if (count < maxValue) {
-    return count;
-  } else {
-    count = 0;
-    return maxValue;
+  let maxValue = 0;
+  
+  return function (){
+
+    if (count < maxValue) {
+     return count++;
+    } 
+
   }
 }
 
